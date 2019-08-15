@@ -46,6 +46,61 @@
           <h1>Rust Compiler</h1>
         </section>
         <section>
+          <h3>Variables and Mutability</h3>
+          <pre><code class="hljs rust" data-trim data-line-numbers="">
+fn main() {
+    let x = 42;
+
+    x = 773;
+
+    println!("{}", x);
+}
+      </code></pre>
+
+      <pre><code class="hljs rust" data-trim data-line-numbers="">
+
+error[E0384]: cannot assign twice to immutable variable `x`
+ --> test.rs:5:5
+  |
+3 |     let x = 42;
+  |         - first assignment to `x`
+4 | 
+5 |     x = 773;
+  |     ^^^^^^^ cannot assign twice to immutable variable
+
+error: aborting due to previous error
+
+For more information about this error, try `rustc --explain E0384`.
+
+          </code></pre>
+        </section>
+        <section>
+            <h3>Variables and Mutability</h3>
+            <pre><code class="hljs rust" data-trim data-line-numbers="">
+  fn main() {
+      let mut x = 42;
+  
+      x = 773;
+  
+      println!("{}", x);
+  }
+        </code></pre>
+  
+        <pre><code class="hljs rust" data-trim data-line-numbers="">
+  
+warning: value assigned to `x` is never read
+ --> test.rs:2:13
+  |
+2 |     let mut x = 42;
+  |             ^
+  |
+  = note: #[warn(unused_assignments)] on by default
+  = help: maybe it is overwritten before being read?
+
+  
+            </code></pre>
+        </section>
+        <section>
           <p>In C++:</p>
           <pre><code class="hljs cpp" data-trim data-line-numbers>
 int* bad_ptr(){
@@ -210,7 +265,7 @@ match some_point {
       </section>
       <section><!-- Errors -->
         <section>
-          <h2>Error Handling</h2>
+          <h1>Error Handling</h1>
         </section>
         <section>
           <h3>Reading a file</h3>
@@ -257,7 +312,7 @@ let f = File::open("hello.txt").expect("Failed to open hello.txt");
       </section>
       <section><!-- Traits -->
         <section>
-          <h2>Traits</h2>
+          <h1>Traits</h1>
         </section>
         <section>
           <pre><code class="hljs rust" data-trim data-line-numbers>
@@ -294,6 +349,9 @@ impl Hash for i64 {
 }
           </code></pre>
         </section>
+      </section>
+      <section>
+        <a href="https://doc.rust-lang.org/book/">Rust Book</a>
       </section>
       
 
